@@ -5,7 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 
-public class SearchTest {
+public class Tests {
 
     @Test
     void searchGoogle() {
