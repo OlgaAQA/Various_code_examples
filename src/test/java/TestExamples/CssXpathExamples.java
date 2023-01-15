@@ -1,8 +1,7 @@
 package TestExamples;
 
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CssXpathExamples {
     void cssXpathExamples() {
@@ -42,5 +41,38 @@ public class CssXpathExamples {
         // <input type="email" class="inputtext login_form_input_box" name="email" id="email" data-testid="email">
         $("input#email.inputtext.login_form_input_box[data-testid=email]");
 
+    }
+
+    void selectorsExamples() {
+        $("div").click();
+        element("div").click();
+
+        $("div", 2).click(); //Третий элемент
+
+        $x("//h1/div").click();
+        $(byXpath("//h1/div")).click();
+
+        $(byText("full text")).click(); //Полное совпадение текста
+        $(withText("ull tex")).click(); //Частичное совпадение текста
+
+        $("").parent();
+        $("").sibling(1); // "Сосед" по дереву вниз
+        $("").preceding(1); // "Сосед" по дереву вверх
+        $("").closest("div"); // Ближайший вверх по дереву, у которогот есть такой атрибут
+        $("").ancestor("div");
+        $("div:last-child");
+
+        // Пример поиска элемента
+        $("div").$("h1").find(byText("abc")).click();
+
+        // Опциональные сокращения
+        $(byAttribute("abc", "x")).click();
+        $("[abc=x]").click();
+
+        $(byId("mytext")).click();
+        $("#mytext").click();
+
+        $(byClassName("red")).click();
+        $(".red").click();
     }
 }

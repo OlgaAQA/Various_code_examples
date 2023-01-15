@@ -1,5 +1,7 @@
 package com.demoqa;
 
+import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -9,32 +11,27 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class TextBox {
 
-//    @BeforeAll
-//    static void beforeAll() {
-//        Configuration.browserSize = "1920x1080";
-//    }
+
+    @BeforeAll
+    static void beforeAll() {
+        Configuration.browserSize = "1920x1080";
+    }
 
     @Test
     void successTest() {
         open("https://demoqa.com/text-box");
 
-        $("#userName").setValue("Alex");
+        $("#userName").setValue("ЮзерНейм");
         $("#userEmail").setValue("emain@email.com");
-        $("#currentAddress").setValue("Some address");
-        $("#permanentAddress").setValue("Another address");
+        $("#currentAddress").setValue("Адрес");
+        $("#permanentAddress").setValue("Другой Адрес");
         $("#submit").scrollTo().click();
 
         $("#output").shouldBe(visible);
-        $("#name").shouldHave(text("Alex"));
+        $("#name").shouldHave(text("ЮзерНейм"));
         $("#email").shouldHave(text("emain@email.com"));
-        $("#output #currentAddress").shouldHave(text("Some address"));
-        $("#output").$("#permanentAddress").shouldHave(text("Another address"));
+        $("#output #currentAddress").shouldHave(text("Адрес"));
+        $("#output").$("#permanentAddress").shouldHave(text("Другой Адрес"));
     }
 
-    @Test
-    void negativeTest() {
-        open("https://demoqa.com/text-box");
-
-        
-    }
 }
