@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class CommandExamples {
 
   void browserCommandExamples() {
-    // -Dselenide.baseUrl=http://github.com
+
     open("https://google.com");
     open("/customer/orders");
     open("/", AuthenticationType.BASIC, "user", "password");
