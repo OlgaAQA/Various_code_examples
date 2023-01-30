@@ -65,8 +65,13 @@ public class ExRegistrationForm {
         $("#currentAddress").setValue("10101010100010101");
 
         // Проверка двух селектов
+        $("#state").click();
+        $(".stateCity-wrapper").$(byText("Haryana")).click();
+        $("#city").click();
+        $(".stateCity-wrapper").$(byText("Karnal")).click();
 
         // подтвердить
+        $("#submit").click();
         // Проверка успешного результата
 
 
