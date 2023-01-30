@@ -1,4 +1,4 @@
-package SimpleFormTestsExamples;
+package testExamples;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +15,7 @@ public class ExRegistrationForm {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.browserSize = "1000x900";
+        Configuration.browserSize = "1920x1080";
     }
 
     @Test
@@ -73,11 +73,6 @@ public class ExRegistrationForm {
         // подтвердить
         $("#submit").click();
         // Проверка успешного результата
-
-
-
-
-
     }
 
 }

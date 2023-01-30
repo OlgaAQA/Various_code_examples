@@ -1,4 +1,4 @@
-package SimpleFormTestsExamples;
+package testExamples;
 
 public class ExInteractions {
 }
