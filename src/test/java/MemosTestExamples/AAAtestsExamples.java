@@ -1,4 +1,4 @@
-package TestExamples;
+package MemosTestExamples;
 
 
 import org.junit.jupiter.api.*;

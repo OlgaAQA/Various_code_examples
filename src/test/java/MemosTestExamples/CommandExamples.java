@@ -1,4 +1,4 @@
-package TestExamples;
+package MemosTestExamples;
 
 import com.codeborne.selenide.*;
 import org.openqa.selenium.Keys;
