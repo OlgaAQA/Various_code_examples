@@ -1,4 +1,4 @@
-package MemosTestExamples;
+package memosTestExamples;
 
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;

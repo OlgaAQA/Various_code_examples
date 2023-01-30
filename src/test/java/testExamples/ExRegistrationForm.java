@@ -1,26 +1,29 @@
 package testExamples;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ExRegistrationForm {
 
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = "1900x1080";
     }
+
 
     @Test
     void successTest() {
         open("https://demoqa.com/automation-practice-form");
+
 
         //Ввести нейм и ласт нейм
         $("[id=firstName]").setValue("Name");
@@ -65,13 +68,13 @@ public class ExRegistrationForm {
         $("#currentAddress").setValue("10101010100010101");
 
         // Проверка двух селектов
-        $("#state").click();
-        $(".stateCity-wrapper").$(byText("Haryana")).click();
-        $("#city").click();
-        $(".stateCity-wrapper").$(byText("Karnal")).click();
+        $("#state").$(byText("Select State")).scrollTo().click();
+        $("#stateCity-wrapper").$(byText("Haryana")).click();
+        $("#city").$(byText("Select City")).click();
+        $("#stateCity-wrapper").$(byText("Karnal")).click();
 
         // подтвердить
-        $("#submit").click();
+        $("#submit").scrollTo().click();
         // Проверка успешного результата
     }
 
