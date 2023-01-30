@@ -50,6 +50,8 @@ public class CommandExamples {
     $("").clear();
     $("").setValue(""); // Если не работает clear
 
+    $("").selectOption("text"); // Выбор значения из простого селекта выбора
+
 
     $("div").sendKeys("c"); // горячие клавиши внутри элемента
     actions().sendKeys("c").perform(); // горячие клавиши вне элемента
@@ -165,6 +167,9 @@ public class CommandExamples {
     $("#file-upload").uploadFile(file);
     $("#file-upload").uploadFromClasspath("readme.txt");
     $("uploadButton").click();
+
+    //Короткий вариант
+    $("#uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
   }
 
   void javascriptExamples() {

@@ -6,10 +6,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-public class GGame extends JFrame {
+
+public class SimpleGUIGame extends JFrame {
+
     private JTextField textGuess;
     private JLabel lblOutput;
     private int number;
+
     public void checkGame() {
         String guessTxt = textGuess.getText();
         String messege = "";
@@ -25,9 +28,9 @@ public class GGame extends JFrame {
 
     }
     public void newGame() {
-        number = (int) (Math.random() * 100 + 1);
+        number = (int) (Math.random() * 10 + 1);
     }
-    public GGame() {
+    public SimpleGUIGame() {
         getContentPane().setForeground(new Color(170, 170, 170));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\olgad\\Desktop\\JOB\\2791675895_naklejka-stiker-na.bmp"));
@@ -47,7 +50,7 @@ public class GGame extends JFrame {
         lblNewLabel.setBounds(26, 30, 387, 19);
         getContentPane().add(lblNewLabel);
 
-        JLabel lblNewLabel_1 = new JLabel("Отгадай какое число от 1 до 100 загаданно:");
+        JLabel lblNewLabel_1 = new JLabel("Отгадай какое число от 1 до 10 загаданно:");
         lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
         lblNewLabel_1.setBounds(82, 60, 297, 19);
         getContentPane().add(lblNewLabel_1);
@@ -78,7 +81,7 @@ public class GGame extends JFrame {
         getContentPane().add(lblOutput);
     }
     public static void main(String[] args) {
-        GGame theGame = new GGame();
+        SimpleGUIGame theGame = new SimpleGUIGame();
         theGame.newGame();
         theGame.setSize(new Dimension(450,300));
         theGame.setVisible(true);
