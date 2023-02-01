@@ -1,34 +1,23 @@
 package testExamples;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Keys;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class ExRegistrationForm {
+public class ExRegistrationForm extends TestBase {
 
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1900x1080";
-    }
 
 
     @Test
-    void successTest() {
+    void successTest()  {
 
-        open("https://demoqa.com/automation-practice-form");
-
+        exRegistrationPage.openPage();
 
         //Ввести нейм и ласт нейм
-        $("[id=firstName]").setValue("Name");
-        $("[id=lastName]").setValue("Last Name");
+        exRegistrationPage.typeUserName("Boris","Godunov");
         //Ввести мыло
         $("[id=userEmail]").setValue("email@gmail.com");
 
@@ -72,12 +61,10 @@ public class ExRegistrationForm {
         $("#stateCity-wrapper").$(byText("Haryana")).click();
         $("#city").$(byText("Select City")).click();
         $("#stateCity-wrapper").$(byText("Karnal")).click();
-sleep(2500);
-        // подтвердить
-      executeJavaScript("$('footer').remove()");
-    sleep(1000);
-        $(".btn-primary").click();
-        sleep(15000);
+
+       executeJavaScript("$('footer').remove()");
+
+
         // Проверка успешного результата
     }
 
