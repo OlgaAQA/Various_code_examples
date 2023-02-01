@@ -22,13 +22,13 @@ public class ExRegistrationForm {
 
     @Test
     void successTest() {
+
         open("https://demoqa.com/automation-practice-form");
 
 
         //Ввести нейм и ласт нейм
         $("[id=firstName]").setValue("Name");
         $("[id=lastName]").setValue("Last Name");
-
         //Ввести мыло
         $("[id=userEmail]").setValue("email@gmail.com");
 
@@ -72,9 +72,12 @@ public class ExRegistrationForm {
         $("#stateCity-wrapper").$(byText("Haryana")).click();
         $("#city").$(byText("Select City")).click();
         $("#stateCity-wrapper").$(byText("Karnal")).click();
-
+sleep(2500);
         // подтвердить
-        $("#submit").scrollTo().click();
+      executeJavaScript("$('footer').remove()");
+    sleep(1000);
+        $(".btn-primary").click();
+        sleep(15000);
         // Проверка успешного результата
     }
 

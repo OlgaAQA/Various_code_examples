@@ -37,6 +37,8 @@ public class CommandExamples {
     Selenide.switchTo().defaultContent();
 
     Selenide.switchTo().window("The Internet"); // Перейти по имени окна
+
+    executeJavaScript("$('footer').remove()"); // Убираем банеры на сайте
   }
 
   void actionsExamples() {
