@@ -4,51 +4,25 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ExRegistrationForm extends TestBase {
 
 
-
     @Test
-    void successTest()  {
+    void successTest() {
 
-        exRegistrationPage.openPage();
+        exRegistrationPage.openPage()
+                .typeUserName("Boris", "Godunov")
+                .typeUserEmail("User@gmail.com")
+                .checkRadio()
+                .typeUserMobile("0123456789")
+                .checkCalendar()
+                .checkSab()
+                .checkCheckBox();
 
-        //Ввести нейм и ласт нейм
-        exRegistrationPage.typeUserName("Boris","Godunov");
-        //Ввести мыло
-        $("[id=userEmail]").setValue("email@gmail.com");
-
-        //Проверка чекбоксов
-        $(".custom-radio",0).click();
-        $(".custom-radio",1).click();
-        $(".custom-radio",2).click();
-
-        //Ввести мобильный
-        $("[id=userNumber]").setValue("0123456789");
-
-        //Проверка календаря
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
-        $(byText("September")).click();
-        $(".react-datepicker__year-select").click();
-        $(byText("1997")).click();
-        $(".react-datepicker__navigation--next").click();
-        $(".react-datepicker__day",0).click();
-
-        //Проверка пердметов
-        $("#subjectsInput").setValue("p");
-        $(".subjects-auto-complete__option").click();
-        $("#subjectsInput").setValue("p");
-        $(".subjects-auto-complete__option").click();
-        $(".subjects-auto-complete__multi-value__remove").click();
-
-        //Проверка чек боксы
-        $(".custom-checkbox",0).click();
-        $(".custom-checkbox",1).click();
-        $(".custom-checkbox",2).click();
 
         // Загрузить файл
         $("#uploadPicture").uploadFile(new File("src/test/resources/img/catrider.jpg"));
@@ -61,11 +35,18 @@ public class ExRegistrationForm extends TestBase {
         $("#stateCity-wrapper").$(byText("Haryana")).click();
         $("#city").$(byText("Select City")).click();
         $("#stateCity-wrapper").$(byText("Karnal")).click();
+        $("#submit").click();
 
-       executeJavaScript("$('footer').remove()");
+
+        executeJavaScript("$('footer').remove()");
+
+        $("#submit").scrollTo().click();
 
 
         // Проверка успешного результата
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("Alex Egorov"), text("alex@egorov.com"));
+
     }
 
 }
