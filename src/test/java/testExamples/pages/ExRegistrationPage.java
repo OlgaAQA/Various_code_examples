@@ -12,7 +12,18 @@ import static com.codeborne.selenide.Selenide.*;
 public class ExRegistrationPage {
     // locators & elements
     private final String FORM_TITLE = "Student Registration Form";
-    private SelenideElement formTitle = $(".practice-form-wrapper"), firstName = $("[id=firstName]"), lastName = $("[id=lastName]"), userEmail = $("[id=userEmail]"), radioMale = $(".custom-radio", 0), radioFemale = $(".custom-radio", 1), radioOther = $(".custom-radio", 2), userMobile = $("[id=userNumber]"), checkBoxSports = $(".custom-checkbox", 0), checkBoxReading = $(".custom-checkbox", 1), checkBoxMusic = $(".custom-checkbox", 2), currentAddress = $("#currentAddress");
+    private SelenideElement formTitle = $(".practice-form-wrapper"),
+            firstName = $("[id=firstName]"),
+            lastName = $("[id=lastName]"),
+            userEmail = $("[id=userEmail]"),
+            radioMale = $(".custom-radio", 0),
+            radioFemale = $(".custom-radio", 1),
+            radioOther = $(".custom-radio", 2),
+            userMobile = $("[id=userNumber]"),
+            checkBoxSports = $(".custom-checkbox", 0),
+            checkBoxReading = $(".custom-checkbox", 1),
+            checkBoxMusic = $(".custom-checkbox", 2),
+            currentAddress = $("#currentAddress");
 
 
     // actions
