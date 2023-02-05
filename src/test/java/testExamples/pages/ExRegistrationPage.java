@@ -3,25 +3,16 @@ package testExamples.pages;
 
 import com.codeborne.selenide.SelenideElement;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ExRegistrationPage {
     // locators & elements
     private final String FORM_TITLE = "Student Registration Form";
-    private SelenideElement formTitle = $(".practice-form-wrapper"),
-            firstName = $("[id=firstName]"),
-            lastName = $("[id=lastName]"),
-            userEmail = $("[id=userEmail]"),
-            radioMale = $(".custom-radio", 0),
-            radioFemale = $(".custom-radio", 1),
-            radioOther = $(".custom-radio", 2),
-            userMobile = $("[id=userNumber]"),
-            checkBoxSports = $(".custom-checkbox", 0),
-            checkBoxReading = $(".custom-checkbox", 1),
-            checkBoxMusic = $(".custom-checkbox", 2);
+    private SelenideElement formTitle = $(".practice-form-wrapper"), firstName = $("[id=firstName]"), lastName = $("[id=lastName]"), userEmail = $("[id=userEmail]"), radioMale = $(".custom-radio", 0), radioFemale = $(".custom-radio", 1), radioOther = $(".custom-radio", 2), userMobile = $("[id=userNumber]"), checkBoxSports = $(".custom-checkbox", 0), checkBoxReading = $(".custom-checkbox", 1), checkBoxMusic = $(".custom-checkbox", 2), currentAddress = $("#currentAddress");
 
 
     // actions
@@ -78,6 +69,31 @@ public class ExRegistrationPage {
         checkBoxSports.click();
         checkBoxReading.click();
         checkBoxMusic.click();
+        return this;
+    }
+
+    public ExRegistrationPage uploadFile() {
+        $("#uploadPicture").uploadFile(new File("src/test/resources/img/catrider.jpg"));
+        return this;
+    }
+
+    public ExRegistrationPage checkCurrentAddress(String address) {
+        currentAddress.setValue(address);
+        return this;
+    }
+
+    public ExRegistrationPage checkSelect() {
+        $("#state").$(byText("Select State")).scrollTo().click();
+        $("#stateCity-wrapper").$(byText("Haryana")).click();
+        $("#city").$(byText("Select City")).click();
+        $("#stateCity-wrapper").$(byText("Karnal")).click();
+        return this;
+    }
+
+    public ExRegistrationPage checkSuccess() {
+        $("#submit").scrollTo().click();
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("Boris Godunov"), text("User@gmail.com"));
         return this;
     }
 
