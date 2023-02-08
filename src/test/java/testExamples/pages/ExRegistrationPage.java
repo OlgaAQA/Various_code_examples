@@ -3,14 +3,16 @@ package testExamples.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import testExamples.pages.components.CalendarComponent;
+import testExamples.tests.TestBase;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static testExamples.tests.TestData.email;
 
-public class ExRegistrationPage {
+public class ExRegistrationPage extends TestBase {
     // locators & elements
     private final String FORM_TITLE = "Student Registration Form";
     public SelenideElement formTitle = $(".practice-form-wrapper"),
@@ -106,7 +108,7 @@ public class ExRegistrationPage {
     public ExRegistrationPage checkSuccess() {
         $("#submit").scrollTo().click();
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Boris Godunov"), text("User@gmail.com"));
+        $(".table-responsive").shouldHave(text("Boris Godunov"), text(email));
         return this;
     }
 
