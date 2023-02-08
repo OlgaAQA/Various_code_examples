@@ -2,6 +2,7 @@ package testExamples.pages;
 
 
 import com.codeborne.selenide.SelenideElement;
+import testExamples.pages.components.CalendarComponent;
 
 import java.io.File;
 
@@ -12,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class ExRegistrationPage {
     // locators & elements
     private final String FORM_TITLE = "Student Registration Form";
-    private SelenideElement formTitle = $(".practice-form-wrapper"),
+    public SelenideElement formTitle = $(".practice-form-wrapper"),
             firstName = $("[id=firstName]"),
             lastName = $("[id=lastName]"),
             userEmail = $("[id=userEmail]"),
@@ -24,6 +25,7 @@ public class ExRegistrationPage {
             checkBoxReading = $(".custom-checkbox", 1),
             checkBoxMusic = $(".custom-checkbox", 2),
             currentAddress = $("#currentAddress");
+    public CalendarComponent calendar = new CalendarComponent();
 
 
     // actions

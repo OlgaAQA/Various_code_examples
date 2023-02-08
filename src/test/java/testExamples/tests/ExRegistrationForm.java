@@ -1,6 +1,7 @@
-package testExamples;
+package testExamples.tests;
 
 import org.junit.jupiter.api.Test;
+import testExamples.pages.components.CalendarComponent;
 
 public class ExRegistrationForm extends TestBase {
 
@@ -14,7 +15,8 @@ public class ExRegistrationForm extends TestBase {
                 .checkRadio()
                 .typeUserMobile("0123456789")
                 .checkCalendar()
-                .checkSab()
+                .calendar.setDate("30", "July", "1993");
+        exRegistrationPage.checkSab()
                 .checkCheckBox()
                 .uploadFile()
                 .checkCurrentAddress("Text address")

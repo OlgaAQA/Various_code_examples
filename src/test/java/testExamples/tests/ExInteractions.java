@@ -1,4 +1,4 @@
-package testExamples;
+package testExamples.tests;
 
 public class ExInteractions {
 }
