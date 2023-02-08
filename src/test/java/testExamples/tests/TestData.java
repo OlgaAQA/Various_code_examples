@@ -1,9 +1,13 @@
 package testExamples.tests;
 
+import com.github.javafaker.Faker;
+
+import static testExamples.utils.RandomUtils.getRandomEmail;
 import static testExamples.utils.RandomUtils.getRandomNumberString;
 
 public class TestData {
-    public static String email = "User@gmail.com";
-    public static String textAddress = "Text address";
+    static Faker faker = new Faker();
+    public static String email = getRandomEmail();
+    public static String textAddress = faker.address().streetAddress();
     public static String mobileRandomNumber = getRandomNumberString(10);
 }
