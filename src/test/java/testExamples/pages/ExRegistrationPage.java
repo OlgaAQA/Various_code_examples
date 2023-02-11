@@ -10,7 +10,7 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static testExamples.tests.TestData.email;
+import static testExamples.tests.TestData.emailRandom;
 
 public class ExRegistrationPage extends TestBase {
     // locators & elements
@@ -108,7 +108,7 @@ public class ExRegistrationPage extends TestBase {
     public ExRegistrationPage checkSuccess() {
         $("#submit").scrollTo().click();
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Boris Godunov"), text(email));
+        $(".table-responsive").shouldHave(text("Boris Godunov"), text(emailRandom));
         return this;
     }
 

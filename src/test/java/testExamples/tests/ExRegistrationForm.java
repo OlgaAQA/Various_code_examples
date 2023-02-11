@@ -14,7 +14,7 @@ public class ExRegistrationForm extends TestBase {
 
         exRegistrationPage.openPage()
                 .typeUserName("Boris", "Godunov")
-                .typeUserEmail(email)
+                .typeUserEmail(emailRandom)
                 .checkRadio()
                 .typeUserMobile(mobileRandomNumber)
                 .checkCalendar()
@@ -22,7 +22,7 @@ public class ExRegistrationForm extends TestBase {
         exRegistrationPage.checkSab()
                 .checkCheckBox()
                 .uploadFile()
-                .checkCurrentAddress(textAddress)
+                .checkCurrentAddress(textAddressRandom)
                 .checkSelect()
                 .checkSuccess();
 

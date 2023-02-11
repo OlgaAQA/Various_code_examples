@@ -7,7 +7,7 @@ import static testExamples.utils.RandomUtils.getRandomNumberString;
 
 public class TestData {
     static Faker faker = new Faker();
-    public static String email = getRandomEmail();
-    public static String textAddress = faker.address().streetAddress();
+    public static String emailRandom = getRandomEmail();
+    public static String textAddressRandom = faker.address().streetAddress();
     public static String mobileRandomNumber = getRandomNumberString(10);
 }
