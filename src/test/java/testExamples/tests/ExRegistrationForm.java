@@ -2,7 +2,6 @@ package testExamples.tests;
 
 import org.junit.jupiter.api.Test;
 import testExamples.pages.ExRegistrationPage;
-
 import static io.qameta.allure.Allure.step;
 import static testExamples.tests.TestData.*;
 
@@ -21,7 +20,7 @@ public class ExRegistrationForm extends TestBase {
             exRegistrationPage.typeUserName("Boris", "Godunov");
         });
 
-        step("Ввод рандомного емейла", () -> {
+        step("Ввод рандомного емейла : "+ emailRandom , () -> {
             exRegistrationPage.typeUserEmail(emailRandom);
         });
 
@@ -29,7 +28,7 @@ public class ExRegistrationForm extends TestBase {
             exRegistrationPage.checkRadio();
         });
 
-        step("Ввод рандомного номера телефона", () -> {
+        step("Ввод рандомного номера телефона : " + mobileRandomNumber, () -> {
             exRegistrationPage.typeUserMobile(mobileRandomNumber);
         });
 
@@ -53,7 +52,7 @@ public class ExRegistrationForm extends TestBase {
             exRegistrationPage.uploadFile();
         });
 
-        step("Ввод рандомного адреса", () -> {
+        step("Ввод рандомного адреса : " + textAddressRandom, () -> {
             exRegistrationPage.checkCurrentAddress(textAddressRandom);
         });
 
