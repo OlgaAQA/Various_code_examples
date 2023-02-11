@@ -3,6 +3,7 @@ package testExamples.tests;
 import org.junit.jupiter.api.Test;
 import testExamples.pages.ExRegistrationPage;
 
+import static io.qameta.allure.Allure.step;
 import static testExamples.tests.TestData.*;
 
 
@@ -12,19 +13,57 @@ public class ExRegistrationForm extends TestBase {
     @Test
     void successTest() {
 
-        exRegistrationPage.openPage()
-                .typeUserName("Boris", "Godunov")
-                .typeUserEmail(emailRandom)
-                .checkRadio()
-                .typeUserMobile(mobileRandomNumber)
-                .checkCalendar()
-                .calendar.setDate("30", "July", "1993");
-        exRegistrationPage.checkSab()
-                .checkCheckBox()
-                .uploadFile()
-                .checkCurrentAddress(textAddressRandom)
-                .checkSelect()
-                .checkSuccess();
+        step("Открытие страницы DemoQA", () -> {
+            exRegistrationPage.openPage();
+        });
+
+        step("Ввод имени и фамилии", () -> {
+            exRegistrationPage.typeUserName("Boris", "Godunov");
+        });
+
+        step("Ввод рандомного емейла", () -> {
+            exRegistrationPage.typeUserEmail(emailRandom);
+        });
+
+        step("Проверка радио-баттонов", () -> {
+            exRegistrationPage.checkRadio();
+        });
+
+        step("Ввод рандомного номера телефона", () -> {
+            exRegistrationPage.typeUserMobile(mobileRandomNumber);
+        });
+
+        step("Проверка функциональности календаря", () -> {
+            exRegistrationPage.checkCalendar();
+        });
+
+        step("Ввод даты в календарь", () -> {
+            exRegistrationPage.calendar.setDate("30", "July", "1993");
+        });
+
+        step("Проверка добавления предметов", () -> {
+            exRegistrationPage.checkSab();
+        });
+
+        step("Проверка чек-боксов", () -> {
+            exRegistrationPage.checkCheckBox();
+        });
+
+        step("Загрузка файла", () -> {
+            exRegistrationPage.uploadFile();
+        });
+
+        step("Ввод рандомного адреса", () -> {
+            exRegistrationPage.checkCurrentAddress(textAddressRandom);
+        });
+
+        step("Проверка двух селектов выбора страны и региона", () -> {
+            exRegistrationPage.checkSelect();
+        });
+
+        step("Проверка данных", () -> {
+            exRegistrationPage.checkSuccess();
+        });
 
     }
 }
