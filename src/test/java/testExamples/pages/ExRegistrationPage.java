@@ -2,6 +2,7 @@ package testExamples.pages;
 
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import testExamples.pages.components.CalendarComponent;
 import testExamples.tests.TestBase;
 
@@ -104,7 +105,7 @@ public class ExRegistrationPage extends TestBase {
         $("#stateCity-wrapper").$(byText("Karnal")).click();
         return this;
     }
-
+@Step("Проверка результата")
     public ExRegistrationPage checkSuccess() {
         $("#submit").scrollTo().click();
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
