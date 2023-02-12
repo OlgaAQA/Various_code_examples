@@ -7,7 +7,6 @@ import testExamples.pages.ExRegistrationPage;
 import static io.qameta.allure.Allure.step;
 import static testExamples.tests.TestData.*;
 
-
 public class ExRegistrationForm extends TestBase {
 
     ExRegistrationPage exRegistrationPage = new ExRegistrationPage();
@@ -21,7 +20,8 @@ public class ExRegistrationForm extends TestBase {
     void successTest() {
 
         step("Открытие страницы DemoQA", () -> {
-            exRegistrationPage.openPage();
+            openPage("https://demoqa.com/automation-practice-form");
+            exRegistrationPage.checkOpenPage();
             takeScreenshot();
         });
 

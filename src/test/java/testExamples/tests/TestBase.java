@@ -9,6 +9,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import static com.codeborne.selenide.Selenide.open;
 
 
 public class TestBase {
@@ -25,6 +26,11 @@ public class TestBase {
     public byte[] takeScreenshot() {
         final WebDriver driver = WebDriverRunner.getWebDriver();
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    public TestBase openPage(String url) {
+        open(url);
+        return this;
     }
 
 

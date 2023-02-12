@@ -1,6 +1,5 @@
 package testExamples.pages;
 
-
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import testExamples.pages.components.CalendarComponent;
@@ -15,9 +14,9 @@ import static testExamples.tests.TestData.emailRandom;
 
 public class ExRegistrationPage extends TestBase {
     // locators & elements
-    private final String FORM_TITLE = "Student Registration Form";
-    public SelenideElement formTitle = $(".practice-form-wrapper"),
-            firstName = $("[id=firstName]"),
+    private static final String FORM_TITLE = "Student Registration Form";
+    public static SelenideElement formTitle = $(".practice-form-wrapper");
+    public SelenideElement firstName = $("[id=firstName]"),
             lastName = $("[id=lastName]"),
             userEmail = $("[id=userEmail]"),
             radioMale = $(".custom-radio", 0),
@@ -32,8 +31,7 @@ public class ExRegistrationPage extends TestBase {
 
 
     // actions
-    public ExRegistrationPage openPage() {
-        open("https://demoqa.com/automation-practice-form");
+    public ExRegistrationPage checkOpenPage() {
         formTitle.shouldHave(text(FORM_TITLE));
         return this;
     }
@@ -105,7 +103,8 @@ public class ExRegistrationPage extends TestBase {
         $("#stateCity-wrapper").$(byText("Karnal")).click();
         return this;
     }
-@Step("Проверка результата")
+
+    @Step("Проверка результата")
     public ExRegistrationPage checkSuccess() {
         $("#submit").scrollTo().click();
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
