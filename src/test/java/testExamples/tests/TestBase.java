@@ -1,7 +1,9 @@
 package testExamples.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.OutputType;
@@ -15,6 +17,7 @@ public class TestBase {
     static void beforeAll() {
         Configuration.browser = "firefox";
         Configuration.browserSize = "1900x1080";
+        SelenideLogger.addListener("allure", new AllureSelenide());
 
     }
 

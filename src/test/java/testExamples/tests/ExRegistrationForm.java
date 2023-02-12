@@ -1,12 +1,12 @@
 package testExamples.tests;
 
+
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import testExamples.pages.ExRegistrationPage;
 import static io.qameta.allure.Allure.step;
 import static testExamples.tests.TestData.*;
-import io.qameta.allure.Allure;
-import io.qameta.allure.AllureLifecycle;
-
 
 
 public class ExRegistrationForm extends TestBase {
@@ -14,6 +14,11 @@ public class ExRegistrationForm extends TestBase {
 
 
     @Test
+    @DisplayName("Пример теста | Регистрация студента | DemoQa")
+    @Feature("Регистрация")
+    @Story("Успешная регистрация")
+    @Owner("OlgaQA")
+    @Link(name = "DemoQA", url = "https://demoqa.com/automation-practice-form")
     void successTest() {
 
         step("Открытие страницы DemoQA", () -> {
