@@ -1,6 +1,5 @@
 package testExamples.tests;
 
-
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,8 +9,8 @@ import static testExamples.tests.TestData.*;
 
 
 public class ExRegistrationForm extends TestBase {
-    ExRegistrationPage exRegistrationPage = new ExRegistrationPage();
 
+    ExRegistrationPage exRegistrationPage = new ExRegistrationPage();
 
     @Test
     @DisplayName("Пример теста | Регистрация студента | DemoQa")
