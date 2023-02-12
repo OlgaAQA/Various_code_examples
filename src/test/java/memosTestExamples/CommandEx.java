@@ -9,11 +9,10 @@ import java.time.Duration;
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 // Это не полный список, - это примеры
-public class CommandExamples {
+public class CommandEx {
 
   void browserCommandExamples() {
 

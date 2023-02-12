@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.*;
 
-public class AAAtestsExamples {
+public class AAAtestsEx {
 
     @Test
     void shouldFindSelenideRepositoryInGithub() {

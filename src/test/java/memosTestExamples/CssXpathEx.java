@@ -3,7 +3,7 @@ package memosTestExamples;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class CssXpathExamples {
+public class CssXpathEx {
     void cssXpathExamples() {
 
         // <input type="email" class="inputtext login_form_input_box" name="email" id="email" data-testid="email">

@@ -10,7 +10,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LabelsTest {
+public class LabelsTestEx {
 
     @Test
     @DisplayName("Мой тест")
