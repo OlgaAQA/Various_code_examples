@@ -168,9 +168,11 @@ public class CommandEx {
 
    // Пример загрузки файла
     File file = new File("src/test/resources/readme.txt");
-    $("#file-upload").uploadFile(file);
+    $("#file-upload").uploadFile(file); // Можно загрузить массив файлов uploadFile(file,file1,file2)
     $("#file-upload").uploadFromClasspath("readme.txt");
     $("uploadButton").click();
+
+    $("input[type='file']").uploadFile(file); // Загрузка файла всегда с типом инпута type=file!!!
 
     //Короткий вариант
     $("#uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
