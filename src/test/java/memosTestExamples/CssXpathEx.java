@@ -1,9 +1,16 @@
 package memosTestExamples;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CssXpathEx {
+    public CssXpathEx() throws FileNotFoundException {
+    }
+
     void cssXpathExamples() {
 
         // <input type="email" class="inputtext login_form_input_box" name="email" id="email" data-testid="email">
@@ -75,4 +82,10 @@ public class CssXpathEx {
         $(byClassName("red")).click();
         $(".red").click();
     }
+
+    //Пример если название ссылки на странице на файл не уникальна
+    File file = $$("a[href*='prajs']")
+            .find(text("Текст"))
+            .download();
+
 }

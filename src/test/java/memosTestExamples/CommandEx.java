@@ -3,18 +3,23 @@ package memosTestExamples;
 import com.codeborne.pdftest.PDF;
 import com.codeborne.selenide.*;
 import com.codeborne.xlstest.XLS;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import org.apache.commons.io.IOUtils;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 
 import java.io.*;
 import java.time.Duration;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // Это не полный список, - это примеры
@@ -167,7 +172,7 @@ public class CommandEx {
 
     }
 
-    void fileOperationExamples() throws IOException {
+    void fileOperationExamples() throws IOException, CsvException {
 
         // Работа с файлами
         File file1 = $("a.fileLink").download(); // Только для <a href=".."> ссылок
@@ -185,9 +190,9 @@ public class CommandEx {
         $("#uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
 
         //Скачивание текстового файла и проверка его содержимого !!!Если у кнопки есть href
-            File download = $("#raw-url").download();
-            String fileContent = IOUtils.toString(new FileReader(download));
-            assertTrue(fileContent.contains("Проверка текста"));
+        File download = $("#raw-url").download();
+        String fileContent = IOUtils.toString(new FileReader(download));
+        assertTrue(fileContent.contains("Проверка текста"));
 
         //Скачивание текстового файла и проверка его содержимого !!!Если у кнопки нет href
         Configuration.proxyEnabled = true;
@@ -199,25 +204,38 @@ public class CommandEx {
 
 
         //Скачивание PDF файла
-            File pdf = $(byText("PDF download")).download();
-            PDF parsedPdf = new PDF(pdf);
-            Assertions.assertEquals(164, parsedPdf.numberOfPages);
+        File pdf = $(byText("PDF download")).download();
+        PDF parsedPdf = new PDF(pdf);
+        assertEquals(164, parsedPdf.numberOfPages);
 
-       //Скачивание XLS файла
-            open("");
-            File file3 = $$("a[href*='prajs']")
-                    .find(text("Скачать Прайс-лист Excel"))
-                    .download();
-            XLS parsedXls = new XLS(file3);
-            boolean checkPassed = parsedXls.excel
-                    .getSheetAt(0)
-                    .getRow(11)
-                    .getCell(1)
-                    .getStringCellValue()
-                    .contains("693010, Сахалинская обл, Южно-Сахалинск г, им Анкудинова Федора Степановича б-р, дом № 15, корпус А");
-            assertTrue(checkPassed);
+        //Скачивание XLS файла
+        File fileXls = $(byText("XLS download")).download();
+        XLS parsedXls = new XLS(fileXls);
+        boolean checkPassed = parsedXls.excel
+                .getSheetAt(0)
+                .getRow(11)
+                .getCell(1)
+                .getStringCellValue()
+                .contains("693010, Сахалинская обл, Южно-Сахалинск г, им Анкудинова Федора Степановича б-р, дом № 15, корпус А");
+        assertTrue(checkPassed);
 
-
+        //Парсинг CSV файлов
+        ClassLoader classLoader = this.getClass().getClassLoader();
+        try (InputStream is = classLoader.getResourceAsStream("csv.csv");
+             Reader reader = new InputStreamReader(is)) {
+            CSVReader csvReader = new CSVReader(reader);
+            List<String[]> strings = csvReader.readAll();
+            assertEquals(3, strings.size());
+        }
+        //Парсинг ZIP файлов
+        ClassLoader classLoader1 = this.getClass().getClassLoader();
+        try (InputStream is = classLoader1.getResourceAsStream("zip_2MB.zip");
+             ZipInputStream zis = new ZipInputStream(is)) {
+            ZipEntry entry;
+            while ((entry = zis.getNextEntry()) != null) {
+                System.out.println(entry.getName());
+            }
+        }
     }
 
     void javascriptExamples() {
@@ -228,3 +246,4 @@ public class CommandEx {
 
     }
 }
+
