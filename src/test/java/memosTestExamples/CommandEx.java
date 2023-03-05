@@ -1,7 +1,9 @@
 package memosTestExamples;
 
+import com.codeborne.pdftest.PDF;
 import com.codeborne.selenide.*;
 import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 
 import java.io.*;
@@ -10,6 +12,7 @@ import java.time.Duration;
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -163,7 +166,7 @@ public class CommandEx {
 
     }
 
-    void fileOperationExamples() throws FileNotFoundException {
+    void fileOperationExamples() throws IOException {
 
         // Работа с файлами
         File file1 = $("a.fileLink").download(); // Только для <a href=".."> ссылок
@@ -180,13 +183,25 @@ public class CommandEx {
         //Короткий вариант
         $("#uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
 
-        //Скачивание текстового файла и проверка его содержимого
-        void downloadSimpleTextFileTest() throws IOException {
-            open("");
+        //Скачивание текстового файла и проверка его содержимого !!!Если у кнопки есть href
             File download = $("#raw-url").download();
             String fileContent = IOUtils.toString(new FileReader(download));
             assertTrue(fileContent.contains("Проверка текста"));
-        }
+
+        //Скачивание текстового файла и проверка его содержимого !!!Если у кнопки нет href
+        Configuration.proxyEnabled = true;
+        Configuration.fileDownload = FileDownloadMode.PROXY;
+
+        File download1 = $("#raw-url").download();
+        String fileContent1 = IOUtils.toString(new FileReader(download1));
+        assertTrue(fileContent1.contains("Проверка текста"));
+
+
+        //Скачивание PDF файла
+            File pdf = $(byText("PDF download")).download();
+            PDF parsedPdf = new PDF(pdf);
+            Assertions.assertEquals(164, parsedPdf.numberOfPages);
+
 
     }
 

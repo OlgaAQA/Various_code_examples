@@ -47,9 +47,15 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-databind:2.14.0',
             'org.json:json:20220924',
             "com.github.javafaker:javafaker:1.0.2",
-            'org.selenide:selenide-selenoid:2.3.4'
+            'org.selenide:selenide-selenoid:2.3.4',
+            'commons-io:commons-io:2.11.0',
+            'com.codeborne:pdf-test:1.7.0',
+            'com.codeborne:xls-test:1.2',
+            'com.opencsv:opencsv:5.5.2',
+            'org.junit.jupiter:junit-jupiter:5.8.1',
+            'com.codeborne:selenide:6.0.3'
     )
-    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.7.2')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.8.1')
 }
 
 test {
