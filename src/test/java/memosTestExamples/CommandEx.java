@@ -2,6 +2,7 @@ package memosTestExamples;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.selenide.*;
+import com.codeborne.xlstest.XLS;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
@@ -201,6 +202,20 @@ public class CommandEx {
             File pdf = $(byText("PDF download")).download();
             PDF parsedPdf = new PDF(pdf);
             Assertions.assertEquals(164, parsedPdf.numberOfPages);
+
+       //Скачивание XLS файла
+            open("");
+            File file3 = $$("a[href*='prajs']")
+                    .find(text("Скачать Прайс-лист Excel"))
+                    .download();
+            XLS parsedXls = new XLS(file3);
+            boolean checkPassed = parsedXls.excel
+                    .getSheetAt(0)
+                    .getRow(11)
+                    .getCell(1)
+                    .getStringCellValue()
+                    .contains("693010, Сахалинская обл, Южно-Сахалинск г, им Анкудинова Федора Степановича б-р, дом № 15, корпус А");
+            assertTrue(checkPassed);
 
 
     }
