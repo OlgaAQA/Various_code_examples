@@ -1,6 +1,5 @@
 package testExamples.utils;
 
-//import org.apache.commons.lang3.StringUtils;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -28,29 +27,6 @@ public class RandomUtils {
 
         return result.toString();
     }
-//
-//    public static String getRandomMessage(int min, int max) {
-//        String[] words = {"and", "or", "but", "because",
-//                "red", "white", "Jane", "John", "Bobby",
-//                "man", "woman", "fish", "elephant", "unicorn",
-//                "a", "the", "every", "some", "any", "all",
-//                "big", "tiny", "pretty", "bald", "small",
-//                "runs", "jumps", "talks", "sleeps", "walks",
-//                "loves", "hates", "sees", "knows", "looks for", "finds",
-//                ", ", ", ", ", ", ". ", ". "};
-//
-//        StringBuilder message = new StringBuilder();
-//        int messageLength = getRandomInt(min, max);
-//        while (message.length() < messageLength) {
-//            int wordIndex = getRandomInt(0, words.length - 1);
-//            message.append(words[wordIndex] + " ");
-//        }
-//
-//        String readyMessage = StringUtils.capitalize(message.toString())
-//                .replace(" ,", ",")
-//                .replace(" .", ".").trim();
-//        return readyMessage;
-//    }
 
     public static int getRandomInt(int min, int max) {
         Random r = new Random();
