@@ -43,13 +43,11 @@ public class ExElements extends TestBase {
     @Test
     void radioButton() {
 
-        step("Открытие страницы Radio Button", () -> {
-            openPage("https://demoqa.com/radio-button");
-            exElementsPage.checkOpenPage("Radio Button");
-            takeScreenshot();
-
-
-        });
+            exElementsPage.openPage("https://demoqa.com/radio-button")
+                    .checkOpenPage("Radio Button")
+                    .clickYes()
+                    .clickImpressive()
+                    .clickNo();
 
     }
 
@@ -81,12 +79,6 @@ public class ExElements extends TestBase {
 
     @Test
     void uploadAndDownload() {
-
-//        step("Открытие страницы Upload and Download", () -> {
-//        openPage("https://demoqa.com/upload-download");
-//        exElementsPage.checkOpenPage("Upload and Download");
-//        takeScreenshot();
-//        });
 
         step("Открытие страницы Upload the-internet.herokuapp.com", () -> {
             openPage("https://the-internet.herokuapp.com/upload");
