@@ -104,7 +104,6 @@ public class ExRegistrationPage extends TestBase {
         return this;
     }
 
-    @Step("Проверка результата")
     public ExRegistrationPage checkSuccess() {
         $("#submit").scrollTo().click();
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));

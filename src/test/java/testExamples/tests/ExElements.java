@@ -1,37 +1,31 @@
 package testExamples.tests;
 
-import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 import testExamples.pages.ExElementsPage;
-
 import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
-import static testExamples.tests.TestData.emailRandom;
+
 
 public class ExElements extends TestBase {
+    // Степы внутри пейджи
+
     ExElementsPage exElementsPage = new ExElementsPage();
 
     @Test
     void testBox() {
 
-
-        exElementsPage.openPageTextBox("https://demoqa.com/text-box")
+        exElementsPage.openPage("https://demoqa.com/text-box")
                 .checkOpenPage("Text Box")
                 .setUserName()
-                .typeUserEmail(emailRandom);
-        //Заполнения первый адрес
-        $("#currentAddress").setValue("FUUUU");
-        //Заполнение второй адрес
-        $("#permanentAddress").setValue("FUUUU");
-        // Спбмит
-        $("#submit").click();
-        //Проверка
+                .typeUserEmail()
+                .typeСurrentAddress()
+                .typePermanentAddress()
+                .clickSubmit()
+                .checkTextBox();
 
-
-}
+    }
 
     @Test
     void checkBox() {

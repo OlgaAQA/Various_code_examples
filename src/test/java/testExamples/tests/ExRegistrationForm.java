@@ -8,6 +8,7 @@ import static io.qameta.allure.Allure.step;
 import static testExamples.tests.TestData.*;
 
 public class ExRegistrationForm extends TestBase {
+    // Степы снаружи в самом тесте
 
     ExRegistrationPage exRegistrationPage = new ExRegistrationPage();
 
