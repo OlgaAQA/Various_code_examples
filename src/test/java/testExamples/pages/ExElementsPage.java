@@ -4,7 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import testExamples.tests.TestBase;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static testExamples.tests.TestData.emailRandom;
@@ -19,11 +18,7 @@ public class ExElementsPage extends TestBase {
             userEmail = $("#userEmail"),
             currentAddress = $("#currentAddress"),
             permanentAddress = $("#permanentAddress"),
-            submit = $("#submit"),
-            yesRadio = $("#yesRadio"),
-            impressiveRadio = $("#impressiveRadio"),
-            noRadio = $("#noRadio"),
-            textSuccess = $(".text-success");
+            submit = $("#submit");
     public String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),
             current_address = faker.address().fullAddress(),
@@ -32,14 +27,14 @@ public class ExElementsPage extends TestBase {
 
     // actions
     @Step("Переход к неоюходимой странице")
-    public ExElementsPage openPage(String url) {
+    public ExElementsPage openPageExEl(String url) {
         openPage(url);
         takeScreenshot();
         return this;
     }
 
     @Step("Проверка наименования страницы")
-    public ExElementsPage checkOpenPage(String FORM_TITLE) {
+    public ExElementsPage checkOpenPageExEl(String FORM_TITLE) {
         formTitle.shouldHave(text(FORM_TITLE));
         return this;
     }
@@ -78,33 +73,11 @@ public class ExElementsPage extends TestBase {
 
     @Step("Проверка Text Box")
     public ExElementsPage checkTextBox() {
-        $(".mb-1", 0).shouldHave(text(firstName));
-        $(".mb-1", 0).shouldHave(text(lastName));
-        $(".mb-1", 1).shouldHave(text(emailRandom));
-        $(".mb-1", 2).shouldHave(text(current_address));
-        $(".mb-1", 3).shouldHave(text(permanent_address));
+       $(".mb-1",0).shouldHave(text(firstName));
+        $(".mb-1",0).shouldHave(text(lastName));
+        $(".mb-1",1).shouldHave(text(emailRandom));
+        $(".mb-1",2).shouldHave(text(current_address));
+        $(".mb-1",3).shouldHave(text(permanent_address));
         return this;
     }
-
-    @Step("Клик по радио Yes и проверка")
-    public ExElementsPage clickYes() {
-        yesRadio.click();
-        textSuccess.shouldHave(text("Yes"));
-        return this;
-    }
-
-    @Step("Клик по радио Impressive и проверка")
-    public ExElementsPage clickImpressive() {
-        impressiveRadio.click();
-        textSuccess.shouldHave(text("Impressive"));
-        return this;
-    }
-
-    @Step("Клик по радио No и проверка")
-    public ExElementsPage clickNo() {
-        noRadio.click();
-        textSuccess.shouldHave(text("Impressive"));
-        return this;
-    }
-
 }

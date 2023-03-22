@@ -1,10 +1,14 @@
 package testExamples.tests;
 
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 import testExamples.pages.ExElementsPage;
+
 import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 
 
@@ -16,8 +20,8 @@ public class ExElements extends TestBase {
     @Test
     void testBox() {
 
-        exElementsPage.openPage("https://demoqa.com/text-box")
-                .checkOpenPage("Text Box")
+        exElementsPage.openPageExEl("https://demoqa.com/text-box")
+                .checkOpenPageExEl("Text Box")
                 .setUserName()
                 .typeUserEmail()
                 .typeСurrentAddress()
@@ -32,7 +36,7 @@ public class ExElements extends TestBase {
 
         step("Открытие страницы Check Box", () -> {
             openPage("https://demoqa.com/checkbox");
-            exElementsPage.checkOpenPage("Check Box");
+            exElementsPage.checkOpenPageExEl("Check Box");
             takeScreenshot();
 
 
@@ -40,23 +44,13 @@ public class ExElements extends TestBase {
 
     }
 
-    @Test
-    void radioButton() {
-
-            exElementsPage.openPage("https://demoqa.com/radio-button")
-                    .checkOpenPage("Radio Button")
-                    .clickYes()
-                    .clickImpressive()
-                    .clickNo();
-
-    }
 
     @Test
     void webTables() {
 
         step("Открытие страницы Web Tables", () -> {
             openPage("https://demoqa.com/webtables");
-            exElementsPage.checkOpenPage("Web Tables");
+            exElementsPage.checkOpenPageExEl("Web Tables");
             takeScreenshot();
 
 
@@ -67,13 +61,13 @@ public class ExElements extends TestBase {
     @Test
     void clickButton() {
 
-        step("Открытие страницы Buttons", () -> {
-            openPage("https://demoqa.com/buttons");
-            exElementsPage.checkOpenPage("Buttons");
-            takeScreenshot();
+
+            exElementsPage.openPageExEl("https://demoqa.com/buttons")
+        .checkOpenPageExEl("Buttons");
+$("#doubleClickBtn").doubleClick();
+$("#doubleClickMessage").shouldHave(text("You have done a double click"));
 
 
-        });
 
     }
 
