@@ -3,13 +3,7 @@ package testExamples.tests;
 
 import org.junit.jupiter.api.Test;
 import testExamples.pages.ExElementsPage;
-
-import java.io.File;
 import java.io.IOException;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
 
 
@@ -36,7 +30,12 @@ public class ExElements extends TestBase {
     void checkBox() {
 
         exElementsPage.openPageExEl("https://demoqa.com/checkbox")
-                        .checkOpenPageExEl("Check Box");
+                .checkOpenPageExEl("Check Box")
+                .expandAndCollapse()
+                .expandAndCollapseInOrder()
+                .checkAndUncheckAllCheckboxesList()
+                .checkAndUncheckAllCheckboxesSection()
+                .checkCheckboxesAndCheck();
 
     }
 

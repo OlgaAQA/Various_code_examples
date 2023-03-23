@@ -1,25 +1,14 @@
 package testExamples.pages;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.FileDownloadMode;
+
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
-import com.opencsv.exceptions.CsvException;
 import io.qameta.allure.Step;
-import org.apache.commons.io.IOUtils;
 import testExamples.tests.TestBase;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.function.BooleanSupplier;
-
-import static com.codeborne.selenide.Condition.name;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static testExamples.tests.TestData.emailRandom;
 
 public class ExElementsPage extends TestBase {
@@ -93,11 +82,11 @@ public class ExElementsPage extends TestBase {
 
     @Step("Проверка Text Box")
     public ExElementsPage checkTextBox() {
-       $(".mb-1",0).shouldHave(text(firstName));
-        $(".mb-1",0).shouldHave(text(lastName));
-        $(".mb-1",1).shouldHave(text(emailRandom));
-        $(".mb-1",2).shouldHave(text(current_address));
-        $(".mb-1",3).shouldHave(text(permanent_address));
+        $(".mb-1", 0).shouldHave(text(firstName));
+        $(".mb-1", 0).shouldHave(text(lastName));
+        $(".mb-1", 1).shouldHave(text(emailRandom));
+        $(".mb-1", 2).shouldHave(text(current_address));
+        $(".mb-1", 3).shouldHave(text(permanent_address));
         return this;
     }
 
@@ -135,7 +124,52 @@ public class ExElementsPage extends TestBase {
 
     @Step("Скачивание файла")
     public ExElementsPage downloadFile() {
-       $("#downloadButton").click();
+        $("#downloadButton").click();
+        return this;
+    }
+
+    @Step("Сворачивание и разворачивание списка по кнопке")
+    public ExElementsPage expandAndCollapse() {
+        $(".rct-option-expand-all").click();
+        $(".rct-option-collapse-all").click();
+        return this;
+    }
+
+    @Step("Сворачивание и разворачивание списка по порядку")
+    public ExElementsPage expandAndCollapseInOrder() {
+        $(".rct-collapse-btn").click();
+        $(".rct-node-collapsed .rct-collapse-btn").click();
+        $(".rct-node-collapsed .rct-collapse-btn").click();
+        $(".rct-node-collapsed .rct-collapse-btn", 2).click();
+        return this;
+    }
+
+    @Step("Поставить и снять все чекбоксы во всем списке")
+    public ExElementsPage checkAndUncheckAllCheckboxesList() {
+        $(".rct-checkbox .rct-icon-uncheck").click();
+        $(".rct-checkbox .rct-icon-check").click();
+        return this;
+    }
+
+    @Step("Поставить и снять все чекбоксы в одном разделе")
+    public ExElementsPage checkAndUncheckAllCheckboxesSection() {
+        $(".rct-checkbox .rct-icon-uncheck", 1).click();
+        $(".rct-checkbox .rct-icon-check").click();
+        return this;
+    }
+
+    @Step("Поставить некоторые чекбоксы и проверка корректности выбора")
+    public ExElementsPage checkCheckboxesAndCheck() {
+        $(".rct-option-expand-all").click();
+        $(".rct-checkbox .rct-icon-uncheck", 3).click();
+        $(".text-success").shouldHave(text("commands"));
+        $(".rct-checkbox .rct-icon-uncheck", 7).click();
+        $(".text-success", 1).shouldHave(text("public"));
+        $(".rct-checkbox .rct-icon-uncheck", 8).click();
+        $(".text-success", 2).shouldHave(text("downloads"));
+        $(".text-success", 3).shouldHave(text("wordFile"));
+        $(".text-success", 4).shouldHave(text("excelFile"));
+        $(".rct-option-collapse-all").click();
         return this;
     }
 }
