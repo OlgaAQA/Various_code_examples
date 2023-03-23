@@ -198,6 +198,9 @@ public class CommandEx {
         Configuration.proxyEnabled = true;
         Configuration.fileDownload = FileDownloadMode.PROXY;
 
+
+
+
         File download1 = $("#raw-url").download();
         String fileContent1 = IOUtils.toString(new FileReader(download1));
         assertTrue(fileContent1.contains("Проверка текста"));

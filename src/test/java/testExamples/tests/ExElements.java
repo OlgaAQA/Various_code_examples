@@ -1,14 +1,15 @@
 package testExamples.tests;
 
-import com.codeborne.selenide.Selenide;
+
 import org.junit.jupiter.api.Test;
 import testExamples.pages.ExElementsPage;
 
 import java.io.File;
+import java.io.IOException;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 
 
@@ -34,13 +35,8 @@ public class ExElements extends TestBase {
     @Test
     void checkBox() {
 
-        step("Открытие страницы Check Box", () -> {
-            openPage("https://demoqa.com/checkbox");
-            exElementsPage.checkOpenPageExEl("Check Box");
-            takeScreenshot();
-
-
-        });
+        exElementsPage.openPageExEl("https://demoqa.com/checkbox")
+                        .checkOpenPageExEl("Check Box");
 
     }
 
@@ -61,32 +57,22 @@ public class ExElements extends TestBase {
     @Test
     void clickButton() {
 
-
-            exElementsPage.openPageExEl("https://demoqa.com/buttons")
-        .checkOpenPageExEl("Buttons");
-$("#doubleClickBtn").doubleClick();
-$("#doubleClickMessage").shouldHave(text("You have done a double click"));
-
-
+        exElementsPage.openPageExEl("https://demoqa.com/buttons")
+                .checkOpenPageExEl("Buttons")
+                .doubleClick()
+                .rightClick()
+                .dynamicClick();
 
     }
 
     @Test
-    void uploadAndDownload() {
+    void uploadAndDownload() throws IOException {
 
-        step("Открытие страницы Upload the-internet.herokuapp.com", () -> {
-            openPage("https://the-internet.herokuapp.com/upload");
-            $(".example").shouldHave(text("File Uploader"));
-            takeScreenshot();
-        });
-
-        step("Загрузка файла по относительному пути", () -> {
-            File exampleFile = new File("src/test/resources/img/catrider.jpg");
-            $("input[type='file']").uploadFile(exampleFile);
-            $("#file-submit").click();
-            $("#uploaded-files").shouldHave(text("catrider.jpg"));
-
-        });
+        exElementsPage.openPageExEl("https://the-internet.herokuapp.com/upload")
+                .checkOpenPageExElUploadAndDownload("File Uploader")
+                .uploadFile()
+                .openPageExEl("https://demoqa.com/upload-download")
+                .downloadFile();
 
     }
 
