@@ -1,14 +1,17 @@
 package testExamples.pages;
 
-
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import testExamples.tests.TestBase;
+import testExamples.utils.RandomUtils;
 import java.io.File;
+import static com.codeborne.selenide.CollectionCondition.itemWithText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static testExamples.tests.TestData.emailRandom;
 
 public class ExElementsPage extends TestBase {
@@ -23,9 +26,12 @@ public class ExElementsPage extends TestBase {
             permanentAddress = $("#permanentAddress"),
             submit = $("#submit");
     public String firstName = faker.name().firstName(),
+            editName = faker.name().firstName(),
             lastName = faker.name().lastName(),
             current_address = faker.address().fullAddress(),
             permanent_address = faker.address().secondaryAddress();
+    Integer randomAge = RandomUtils.getRandomInt(1, 130),
+            salary = RandomUtils.getRandomInt(100, 2500);
 
 
     // actions
@@ -170,6 +176,49 @@ public class ExElementsPage extends TestBase {
         $(".text-success", 3).shouldHave(text("wordFile"));
         $(".text-success", 4).shouldHave(text("excelFile"));
         $(".rct-option-collapse-all").click();
+        return this;
+    }
+
+    @Step("Ввести данные пользователя в таблицу и проверка результата")
+    public ExElementsPage enterUserDataInTheTableAndCheckTheResult() {
+        $("#addNewRecordButton").click();
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(emailRandom);
+        $("#age").setValue(String.valueOf(randomAge));
+        $("#salary").setValue(String.valueOf(salary));
+        $("#department").setValue(current_address);
+        $("#submit").click();
+
+        $$(".rt-td").shouldHave(itemWithText(firstName));
+        $$(".rt-td").shouldHave(itemWithText(lastName));
+        $$(".rt-td").shouldHave(itemWithText(emailRandom));
+        $$(".rt-td").shouldHave(itemWithText(String.valueOf(randomAge)));
+        $$(".rt-td").shouldHave(itemWithText(String.valueOf(salary)));
+        return this;
+    }
+
+    @Step("Поиск добавленного пользователя")
+    public ExElementsPage userSearch() {
+        $("#searchBox").sendKeys(firstName);
+        $(".rt-td").shouldHave(text(firstName));
+        return this;
+    }
+
+    @Step("Редактирование пользователя")
+    public ExElementsPage userEditing() {
+        $(".mr-2").click();
+        $("#firstName").setValue(editName);
+        $("#submit").click();
+        $("#searchBox").setValue(String.valueOf(editName));
+        $(".rt-td").shouldHave(text(editName));
+        return this;
+    }
+
+    @Step("Удаление пользователя")
+    public ExElementsPage userDelete() {
+        $("#delete-record-4").click();
+        $(".rt-noData").shouldHave(Condition.text("No rows found"));
         return this;
     }
 }

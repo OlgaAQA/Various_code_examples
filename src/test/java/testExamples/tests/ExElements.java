@@ -1,11 +1,8 @@
 package testExamples.tests;
 
-
 import org.junit.jupiter.api.Test;
 import testExamples.pages.ExElementsPage;
 import java.io.IOException;
-import static io.qameta.allure.Allure.step;
-
 
 public class ExElements extends TestBase {
     // Степы внутри пейджи
@@ -43,13 +40,12 @@ public class ExElements extends TestBase {
     @Test
     void webTables() {
 
-        step("Открытие страницы Web Tables", () -> {
-            openPage("https://demoqa.com/webtables");
-            exElementsPage.checkOpenPageExEl("Web Tables");
-            takeScreenshot();
-
-
-        });
+        exElementsPage.openPageExEl("https://demoqa.com/webtables")
+                .checkOpenPageExEl("Web Tables")
+                .enterUserDataInTheTableAndCheckTheResult()
+                .userSearch()
+                .userEditing()
+                .userDelete();
 
     }
 
